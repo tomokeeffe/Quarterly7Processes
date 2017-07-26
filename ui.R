@@ -1,6 +1,7 @@
 library(shinydashboard)
 library(rsconnect)
 library(shiny)
+library(plotly)
 
 
 #load(url("https://www.dropbox.com/s/0byzlxs29g0cs9y/AllData2.RData?dl=1"))

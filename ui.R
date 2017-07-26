@@ -17,7 +17,7 @@ sidebar <- dashboardSidebar(
               menuItem("Country Analysis",  icon = icon("th"), tabName = "Country",badgeColor = "green")
               
   ),
-  conditionalPanel(condition="input.menu1=='Figures'|| input.menu1=='Country'",
+  conditionalPanel(condition="input.menu1=='Figures'",
                    selectInput(inputId = "data",
                                label = "Select Data",
                                choices = c("Annual","Quarterly"),

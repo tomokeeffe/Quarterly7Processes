@@ -66,7 +66,7 @@ body <- dashboardBody(
                            "This web application utilises R to collect data from the", span(a("European Sector Accounts",href="http://ec.europa.eu/eurostat/web/sector-accounts",target="_blank")), "the European equivalent of the National Income and Product Accounts (NIPA) Godley makes use of in his paper. Data on the money stock is collected from the", span(a("ECB's Statistical Warehouse",href="http://sdw.ecb.europa.eu/",target="_blank")),". Note that for some countries data may be incomplete. An ARIMA(p,d,q) model is generated to forecast the next 5 years of data including the 95% confidence interval, where p is the Autoregressive order, d is the order of differencing and q is the Moving Average order."
               )),
               fluidRow(box(title = "About the app",width = "100",status= "success",  solidHeader = TRUE, collapsible = TRUE,
-                           "This app was created by Stephen Kinsella, Tom O'Keeffe and Sean Ryan at the University of Limerick. All data was collected, analysed and visualised using R, f "
+                           "This web application was created by Stephen Kinsella, Tom O'Keeffe and Sean Ryan at the University of Limerick using the statistical programming language R to collect, analyse and visualise the data mentioned above. The code used to create this web application can be found on", span(a("Github.",href="https://github.com/tomokeeffe/Quarterly7Processes",target="_blank")),"Any queries relating to this web application can be sent to the following: tomokeeffe04@gmail.com"
               ))
               ),    
       
@@ -171,7 +171,7 @@ body <- dashboardBody(
                             }
                             '))),
   
-  tags$footer("Created by Stephen Kinsella & Tom O'Keeffe; University of Limerick.", align = "left", style = "
+  tags$footer("Created by Stephen Kinsella, Tom O'Keeffe and Sean Ryan; University of Limerick.", align = "left", style = "
               bottom:0;
               width:100%;
               height:25px;   /* Height of the footer */

@@ -48,100 +48,34 @@ sidebar <- dashboardSidebar(
                                selected = "Ireland")
   ))
 
+
+
+
 body <- dashboardBody(
   fluidPage(
     tabItems(
       tabItem(tabName = "Introduction",
               fluidRow(box(title = "Introduction",width = "100",status= "success",  solidHeader = TRUE, collapsible = TRUE,
-                           "Wynne Godley's paper",span(a("Seven Unsustainable Processes (1999)",href="http://www.google.ie/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCAQFjAAahUKEwjnqpyepv7HAhUEuBoKHQb4DHQ&url=http%3A%2F%2Fwww.levyinstitute.org%2Fpubs%2Fsevenproc.pdf&usg=AFQjCNEF7Vf6q7BRf7G0QSJim1cxeRhsjQ&sig2=ABgwGHEbqTgi2CxWx2b4uQ",target="_blank")), "which examines the medium-term prospects of the US economy and possible future policies, shows that in the United States, growth in that period was associated with seven unsustainable processes.  Godley argues that, given unchanged fiscal policy and growth in the rest of the world, in order to maintain growth, the excessive indebtedness implied by these processes would be so large as to create major problems for the US economy in the future.
-                           This web application aims to replicate the graphs in Godley's 1999 paper for all countries in the EU, to see whether or not similar patterns emerge in other countries."      
-              )),
+                           "Wynne Godley's", span(a("Seven Unsustainable Processes (1999)",href="http://www.google.ie/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCAQFjAAahUKEwjnqpyepv7HAhUEuBoKHQb4DHQ&url=http%3A%2F%2Fwww.levyinstitute.org%2Fpubs%2Fsevenproc.pdf&usg=AFQjCNEF7Vf6q7BRf7G0QSJim1cxeRhsjQ&sig2=ABgwGHEbqTgi2CxWx2b4uQ",target="_blank")),"examined the medium-term prospects for the US economy. It shows that in the United States, growth in that period was associated with seven unsustainable processes related to fiscal policy, foreign trade and payments, and private saving, spending, and borrowing. Given unchanged US fiscal policy and growth in the rest of the world, in order to maintain growth, the excessive indebtedness implied by these processes would be so large as to create major problems for the US economy and the world economy in the future. Godley was right. This web application aims to replicate Godley's analysis for all of the countries in the EU, to see whether or not these unsustainable processes can be seen. It goes beyond Godley in forecasting each important ratio. The accompanying paper gives full details of the ratios and their construction."
+                           )),
               fluidRow(box(title = "How to Use this Web Application",width = "100",status= "success",  solidHeader = TRUE, collapsible = TRUE,
                            "Click the Figures tab in the sidebar and click the relevant button to show the plotly graph of your choice. Select the Country from the drop down box in the sidebar to generate the data for that country.All the charts are interactive, click and drag to zoom in and double-click to return to the original graph. Drag the corners of a graph to zoom along one axis. Double-click to autoscale a single axis. By clicking on the legend items, these items can be removed and added."
               )),
               
               fluidRow(box(title = "Notes on Data",width = "100",status= "success",  solidHeader = TRUE, collapsible = TRUE,
                            "This web application utilises R to collect data from the", span(a("European Sector Accounts",href="http://ec.europa.eu/eurostat/web/sector-accounts",target="_blank")), "the European equivalent of the National Income and Product Accounts (NIPA) Godley makes use of in his paper. Data on the money stock is collected from the", span(a("ECB's Statistical Warehouse",href="http://sdw.ecb.europa.eu/",target="_blank")),". Note that for some countries data may be incomplete. An ARIMA(p,d,q) model is generated to forecast the next 5 years of data including the 95% confidence interval, where p is the Autoregressive order, d is the order of differencing and q is the Moving Average order."
+              )),
+              fluidRow(box(title = "About the app",width = "100",status= "success",  solidHeader = TRUE, collapsible = TRUE,
+                           "This app was created by Stephen Kinsella, Tom O'Keeffe and Sean Ryan at the University of Limerick. All data was collected, analysed and visualised using R, f "
               ))
-              
               ),    
       
       tabItem(tabName = "Figures",
               fluidRow(box(title=textOutput("boxtitle"),status = "warning",width = "100%",solidHeader = T,textOutput("text"), collapsible = TRUE)),
               fluidRow(box(plotlyOutput(("plot")), width = "100%",status = "success", solidHeader = TRUE, collapsible = TRUE, title= "Chart 1")),
               conditionalPanel(condition = "input.figure == 2 || input.figure == 4 || input.figure == 5 || input.figure == 6 || input.figure == 8",fluidRow(box(plotlyOutput(("plot2")), width = "100%",status = "success", solidHeader = TRUE, collapsible = TRUE, title= "Chart 2"))),
-              conditionalPanel(condition = "input.figure == 2 || input.figure == 4|| input.figure == 6",fluidRow(box(plotlyOutput(("plot3")), width = "100%",status = "success", solidHeader = TRUE, collapsible = TRUE, title= "Chart 3"))),
+              conditionalPanel(condition = "input.figure == 2 || input.figure == 4|| input.figure == 6",fluidRow(box(plotlyOutput(("plot3")), width = "100%",status = "success", solidHeader = TRUE, collapsible = TRUE, title= "Chart 3")))
               
-              tags$head(tags$style(HTML('
-                                        
-                                        /* logo */
-                                        .skin-blue .main-header .logo {
-                                        background-color: #00a65a;
-                                        font-family: "Georgia", Times, "Times New Roman", serif;
-                                        font-weight: bold;
-                                        font-size: 24px;
-                                        }
-                                        
-                                        /* logo when hovered */
-                                        .skin-blue .main-header .logo:hover {
-                                        background-color: #00a65a;
-                                        }
-                                        
-                                        /* navbar (rest of the header) */
-                                        .skin-blue .main-header .navbar {
-                                        background-color: #00a65a;
-                                        }
-                                        /* main sidebar */
-                                        .skin-blue .main-sidebar {
-                                        background-color: #fff0;
-                                        }
-                                        
-                                        .content-wrapper,
-                                        .right-side {
-                                        background-color: #ffffff;
-                                        font-size: 15px;
-                                        line-height: 1.7;
-                                        }
-                                        
-                                        .box.box-solid.box-success>.box-header {
-                                        height: 30px;
-                                        line-height:0;
-                                        }
-                                        .box-header .box-title{
-                                        font-size: 16px;
-                                        font-weight: bold;
-                                        
-                                        }
-                                        /* main sidebar */
-                                        .skin-blue .main-sidebar {
-                                        background-color: #404040;
-                                        }
-                                        
-                                        
-                                        /* active selected tab in the sidebarmenu */
-                                        .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
-                                        background-color: #303030;
-                                        color: #ffff;
-                                        border-left-color: #00a65a;
-                                        }
-                                        
-                                        /* other links in the sidebarmenu */
-                                        .skin-blue .main-sidebar .sidebar .sidebar-menu a{
-                                        background-color: #404040;
-                                        color: #ffff;
-                                        }
-                                        
-                                        /* other links in the sidebarmenu when hovered */
-                                        .skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
-                                        background-color: #303030
-                                        color: #ffff;
-                                        border-left-color: #00a65a;
-                                        }
-                                        /* toggle button when hovered  */                    
-                                        .skin-blue .main-header .navbar .sidebar-toggle:hover{
-                                        background-color: #303030;
-                                        }
-                                        ')))
               ),    
       
       tabItem(tabName = "Country",
@@ -165,7 +99,91 @@ body <- dashboardBody(
               
       )
       
-              )))
+              )),
+  tags$head(tags$style(HTML('
+                                        
+                            /* logo */
+                            .skin-blue .main-header .logo {
+                            background-color: #00a65a;
+                            font-family: "Georgia", Times, "Times New Roman", serif;
+                            font-weight: bold;
+                            font-size: 24px;
+                            }
+                            
+                            /* logo when hovered */
+                            .skin-blue .main-header .logo:hover {
+                            background-color: #00a65a;
+                            }
+                            
+                            /* navbar (rest of the header) */
+                            .skin-blue .main-header .navbar {
+                            background-color: #00a65a;
+                            }
+                            /* main sidebar */
+                            .skin-blue .main-sidebar {
+                            background-color: #fff0;
+                            }
+                            
+                            .content-wrapper,
+                            .right-side {
+                            background-color: #ffffff;
+                            font-size: 15px;
+                            line-height: 1.7;
+                            }
+                            
+                            .box.box-solid.box-success>.box-header {
+                            height: 30px;
+                            line-height:0;
+                            }
+                            .box-header .box-title{
+                            font-size: 16px;
+                            font-weight: bold;
+                            
+                            }
+                            /* main sidebar */
+                            .skin-blue .main-sidebar {
+                            background-color: #404040;
+                            }
+                            
+                            
+                            /* active selected tab in the sidebarmenu */
+                            .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+                            background-color: #303030;
+                            color: #ffff;
+                            border-left-color: #00a65a;
+                            }
+                            
+                            /* other links in the sidebarmenu */
+                            .skin-blue .main-sidebar .sidebar .sidebar-menu a{
+                            background-color: #404040;
+                            color: #ffff;
+                            }
+                            
+                            /* other links in the sidebarmenu when hovered */
+                            .skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+                            background-color: #303030
+                            color: #ffff;
+                            border-left-color: #00a65a;
+                            }
+                            /* toggle button when hovered  */                    
+                            .skin-blue .main-header .navbar .sidebar-toggle:hover{
+                            background-color: #303030;
+                            }
+                            '))),
+  
+  tags$footer("Created by Stephen Kinsella & Tom O'Keeffe; University of Limerick.", align = "left", style = "
+              bottom:0;
+              width:100%;
+              height:25px;   /* Height of the footer */
+              color: grey;
+              padding: 10px;
+              background-color: white;
+              z-index: 1000;")
+  
+  
+  
+  
+  )
 
 
 
